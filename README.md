@@ -24,8 +24,8 @@ docker run --rm godsogeking/student-management:latest
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/student-management-system.git
-cd student-management-system
+git clone https://github.com/AlexGithub901/Student-Management-System.git
+cd Student-Management-System
 ```
 
 2. Install dependencies:
@@ -169,7 +169,7 @@ See LICENSE file for details.
 
 ## Author
 
-godsogeking
+AlexGithub901
 
 ## Troubleshooting
 
