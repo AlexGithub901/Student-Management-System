@@ -1,0 +1,835 @@
+# COMPREHENSIVE GIT COMMANDS REFERENCE
+# Student Management System Project
+# All Git commands used throughout the development workflow
+
+## ============================================================================
+## SECTION 1: GIT SETUP & CONFIGURATION
+## ============================================================================
+
+# Configure Git user name globally
+git config --global user.name "AlexGithub901"
+
+# Configure Git email globally
+git config --global user.email "aniketpredij@gmail.com"
+
+# View current Git configuration
+git config --global --list
+
+# Set default editor for Git messages
+git config --global core.editor "nano"
+
+
+## ============================================================================
+## SECTION 2: REPOSITORY INITIALIZATION & CLONING
+## ============================================================================
+
+# Clone repository from GitHub
+git clone https://github.com/AlexGithub901/Student-Management-System.git
+
+# Change to repository directory
+cd Student-Management-System
+
+# Initialize a new Git repository locally
+git init
+
+# Add remote repository origin
+git remote add origin https://github.com/AlexGithub901/Student-Management-System.git
+
+# Verify remote repository
+git remote -v
+
+# View all remotes
+git remote
+
+
+## ============================================================================
+## SECTION 3: BRANCHING OPERATIONS
+## ============================================================================
+
+# List all local branches
+git branch
+
+# List all branches (local and remote)
+git branch -a
+
+# Create a new branch
+git branch feature-export
+
+# Create and switch to a new branch in one command
+git checkout -b feature-export
+
+# Switch to an existing branch
+git checkout main
+
+# Switch back to main branch
+git checkout main
+
+# Delete a local branch (after merging)
+git branch -d feature-export
+
+# Force delete a local branch
+git branch -D feature-export
+
+# Rename current branch
+git branch -m new-branch-name
+
+# View branch tracking information
+git branch -v
+
+# View branches with remote tracking
+git branch -vv
+
+
+## ============================================================================
+## SECTION 4: STATUS & INFORMATION COMMANDS
+## ============================================================================
+
+# Check current repository status
+git status
+
+# Show short status format
+git status -s
+
+# View commit history in one-line format
+git log --oneline
+
+# View last 10 commits
+git log --oneline -10
+
+# View commit history with graph visualization
+git log --oneline --all --graph
+
+# Show detailed commit history
+git log
+
+# View specific commit details
+git log -1
+
+# Show commits between branches
+git log main..feature-export
+
+# Show file change statistics
+git log --stat
+
+# View commits on current branch only
+git log --oneline feature-export
+
+# Show commits by author
+git log --author="AlexGithub901"
+
+# Search commits by message
+git log --grep="export"
+
+# View commit graph with all branches
+git log --graph --oneline --all
+
+
+## ============================================================================
+## SECTION 5: STAGING & COMMITTING
+## ============================================================================
+
+# Stage a specific file for commit
+git add student.py
+
+# Stage all modified files
+git add .
+
+# Stage all files in current directory
+git add -A
+
+# Interactive staging (choose which hunks to stage)
+git add -p
+
+# View what will be staged
+git diff --cached
+
+# Stage modified and deleted files (not new files)
+git add -u
+
+# Commit staged changes with message
+git commit -m "Add .dockerignore for optimized Docker builds"
+
+# Commit with multi-line message
+git commit -m "Add JSON export support with format parameter
+
+- Implement export_students(format='csv'|'json')
+- Add export_students_csv() helper function
+- Add export_students_json() helper function
+- Default format is CSV for backward compatibility"
+
+# Commit all changes (staged and modified tracked files)
+git commit -a -m "Update all files"
+
+# Amend the last commit
+git commit --amend
+
+# Amend with updated message
+git commit --amend -m "New commit message"
+
+# View differences before committing
+git diff
+
+# View staged differences
+git diff --cached
+
+
+## ============================================================================
+## SECTION 6: PUSHING & PULLING
+## ============================================================================
+
+# Push local branch to remote
+git push origin feature-export
+
+# Push to main branch
+git push origin main
+
+# Push all branches
+git push origin --all
+
+# Push with upstream tracking
+git push -u origin feature-export
+
+# Push force (use with caution)
+git push origin main --force
+
+# Pull latest changes from main branch
+git pull origin main
+
+# Pull with rebase (cleaner history)
+git pull --rebase origin main
+
+# Fetch latest updates without merging
+git fetch origin
+
+# Fetch all remotes
+git fetch --all
+
+# Fetch and prune deleted branches
+git fetch --prune
+
+
+## ============================================================================
+## SECTION 7: MERGING & REBASING
+## ============================================================================
+
+# Merge feature branch into main
+git merge feature-export
+
+# Merge specific commit into main
+git merge cf6f91d
+
+# Abort an ongoing merge
+git merge --abort
+
+# View merge conflicts
+git status
+
+# Rebase current branch onto main
+git rebase main
+
+# Rebase and keep interactive history
+git rebase -i main
+
+# Abort rebase operation
+git rebase --abort
+
+# Continue rebase after resolving conflicts
+git rebase --continue
+
+
+## ============================================================================
+## SECTION 8: CONFLICT RESOLUTION
+## ============================================================================
+
+# Check status of conflicted files
+git status
+
+# View conflict markers in file
+cat README.md
+
+# Use ours version in conflict
+git checkout --ours README.md
+
+# Use theirs version in conflict
+git checkout --theirs README.md
+
+# Resolve conflicts manually then stage
+git add README.md
+
+# Abort merge and start over
+git merge --abort
+
+# After resolving, commit the merge
+git commit -m "Merge remote README and resolve conflicts"
+
+
+## ============================================================================
+## SECTION 9: FILE OPERATIONS
+## ============================================================================
+
+# Remove file from working directory and staging
+git rm student.py
+
+# Remove file from staging only (keep local copy)
+git rm --cached .dockerignore
+
+# Move or rename file
+git mv old_name.py new_name.py
+
+# View file at specific commit
+git show cf6f91d:student.py
+
+# View commit that introduced a line
+git blame student.py
+
+# View file history
+git log -p student.py
+
+# Restore file from staging area
+git restore student.py
+
+# Restore file from specific commit
+git restore --source=HEAD~1 student.py
+
+# Reset file to last commit
+git reset HEAD student.py
+
+# Discard changes in working directory
+git checkout -- student.py
+
+
+## ============================================================================
+## SECTION 10: STASHING
+## ============================================================================
+
+# Stash current changes
+git stash
+
+# Stash with description
+git stash save "WIP: JSON export feature"
+
+# List all stashes
+git stash list
+
+# Apply most recent stash
+git stash apply
+
+# Apply specific stash
+git stash apply stash@{0}
+
+# Apply and remove stash
+git stash pop
+
+# Remove all stashes
+git stash clear
+
+# Remove specific stash
+git stash drop stash@{0}
+
+
+## ============================================================================
+## SECTION 11: UNDOING & REVERTING
+## ============================================================================
+
+# View last commit
+git show HEAD
+
+# Revert last commit (creates new commit)
+git revert HEAD
+
+# Revert specific commit
+git revert cf6f91d
+
+# Reset to previous commit (keep changes in working directory)
+git reset HEAD~1
+
+# Reset to previous commit (discard changes)
+git reset --hard HEAD~1
+
+# Reset to specific commit
+git reset --hard cf6f91d
+
+# Reset specific file
+git reset HEAD student.py
+
+# View reflog (reference logs)
+git reflog
+
+# Recover deleted branch
+git reflog
+git checkout -b recovered-branch cf6f91d
+
+
+## ============================================================================
+## SECTION 12: TAGGING
+## ============================================================================
+
+# Create lightweight tag
+git tag v1.0
+
+# Create annotated tag
+git tag -a v1.0 -m "Version 1.0 release"
+
+# List all tags
+git tag
+
+# Show tag details
+git show v1.0
+
+# Push tags to remote
+git push origin v1.0
+
+# Push all tags
+git push origin --tags
+
+# Delete local tag
+git tag -d v1.0
+
+# Delete remote tag
+git push origin --delete v1.0
+
+
+## ============================================================================
+## SECTION 13: COMPARING & DIFFING
+## ============================================================================
+
+# Show differences between working directory and staging
+git diff
+
+# Show differences between staging and last commit
+git diff --cached
+
+# Compare two branches
+git diff main feature-export
+
+# Compare specific files
+git diff main feature-export -- student.py
+
+# Show word-level differences
+git diff --word-diff
+
+# Show differences with statistics
+git diff --stat
+
+# Show differences between commits
+git diff cf6f91d 4ed344f
+
+
+## ============================================================================
+## SECTION 14: SEARCHING & HISTORY
+## ============================================================================
+
+# Search commits by message
+git log --grep="export"
+
+# Search commits by content
+git log -S "export_students"
+
+# Show commits modifying specific line
+git log -L 30,40:student.py
+
+# Find who changed a specific line
+git blame student.py
+
+# Show all commits in history
+git log --all
+
+# Show commits not in main
+git log main..feature-export
+
+# Show commits in both branches
+git log main...feature-export
+
+# Show commits by date range
+git log --since="2 weeks ago"
+git log --after="2026-07-01" --before="2026-07-20"
+
+
+## ============================================================================
+## SECTION 15: CLEAN UP & MAINTENANCE
+## ============================================================================
+
+# Remove untracked files (dry run)
+git clean -n
+
+# Remove untracked files
+git clean -f
+
+# Remove untracked directories
+git clean -fd
+
+# Remove untracked files and directories
+git clean -fdx
+
+# Garbage collect and optimize repository
+git gc
+
+# Remove local branches that are deleted on remote
+git fetch --prune
+
+# Show large objects in repository
+git rev-list --all --objects | sort -k 2 | tail -20
+
+
+## ============================================================================
+## SECTION 16: ADVANCED OPERATIONS
+## ============================================================================
+
+# Cherry-pick commit from another branch
+git cherry-pick cf6f91d
+
+# Cherry-pick multiple commits
+git cherry-pick cf6f91d 4ed344f
+
+# Abort cherry-pick
+git cherry-pick --abort
+
+# Continue after resolving conflicts
+git cherry-pick --continue
+
+# Interactive rebase to squash commits
+git rebase -i HEAD~3
+
+# Squash last 3 commits
+git reset --soft HEAD~3
+git commit -m "Squashed commits"
+
+# See what would be deleted
+git clean --dry-run -fd
+
+# Interactive staging
+git add --patch
+
+
+## ============================================================================
+## SECTION 17: REMOTE OPERATIONS
+## ============================================================================
+
+# Show remote repositories
+git remote
+
+# Show remote with URLs
+git remote -v
+
+# Add new remote
+git remote add upstream https://github.com/other/repo.git
+
+# Rename remote
+git remote rename origin backup
+
+# Remove remote
+git remote remove backup
+
+# Show remote branch details
+git branch -r
+
+# Fetch from specific remote
+git fetch upstream
+
+# Pull from specific remote
+git pull upstream main
+
+# Set upstream for current branch
+git branch --set-upstream-to=origin/main main
+
+# Show tracking information
+git branch -vv
+
+
+## ============================================================================
+## SECTION 18: DOCKER & GIT INTEGRATION
+## ============================================================================
+
+# Tag Docker image with commit
+docker tag student-management:latest godsogeking/student-management:latest
+
+# Push Docker image
+docker push godsogeking/student-management:latest
+
+# Build with git commit SHA
+docker build -t student-management:$(git rev-parse --short HEAD) .
+
+
+## ============================================================================
+## SECTION 19: WORKFLOW PATTERNS
+## ============================================================================
+
+# Standard Feature Branch Workflow:
+git checkout -b feature-export              # 1. Create feature branch
+# ... make changes ...
+git add .                                   # 2. Stage changes
+git commit -m "description"                 # 3. Commit
+git push origin feature-export              # 4. Push branch
+# ... Create PR on GitHub ...
+git pull origin main                        # 5. Pull latest main
+# ... Fix conflicts if any ...
+git add .                                   # 6. Stage resolved conflicts
+git commit -m "Merge remote and resolve"    # 7. Commit
+git push origin main                        # 8. Push to main
+
+# Pull Request & Merge Workflow:
+git checkout -b feature-x                   # Create branch
+git add .                                   # Stage changes
+git commit -m "Add feature"                 # Commit
+git push -u origin feature-x                # Push and set upstream
+# Create PR on GitHub
+# Wait for CI/CD to pass
+# Merge PR on GitHub
+git checkout main                           # Switch to main
+git pull origin main                        # Pull latest
+git branch -d feature-x                     # Delete local branch
+git push origin --delete feature-x          # Delete remote branch
+
+
+## ============================================================================
+## SECTION 20: USEFUL ALIASES
+## ============================================================================
+
+# Set up useful Git aliases
+git config --global alias.st 'status'
+git config --global alias.co 'checkout'
+git config --global alias.br 'branch'
+git config --global alias.ci 'commit'
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.last 'log -1 HEAD'
+git config --global alias.visual 'log --graph --oneline --all'
+git config --global alias.amend 'commit --amend --no-edit'
+git config --global alias.undo 'reset --soft HEAD~1'
+
+# Usage examples:
+git st                                      # Instead of git status
+git co feature-export                       # Instead of git checkout
+git visual                                  # Show commit graph
+
+
+## ============================================================================
+## SECTION 21: PROJECT-SPECIFIC COMMANDS USED
+## ============================================================================
+
+# Commands used in this Student Management System project:
+
+# 1. Initial setup
+git config --global user.name "AlexGithub901"
+git config --global user.email "aniketpredij@gmail.com"
+git clone https://github.com/AlexGithub901/Student-Management-System.git
+cd Student-Management-System
+
+# 2. Create feature branch
+git checkout -b feature-export
+
+# 3. Make changes and commit
+git add .dockerignore
+git commit -m "Add .dockerignore for optimized Docker builds"
+
+git add Dockerfile
+git commit -m "Optimize Dockerfile with layer caching best practices"
+
+git add docker-compose.yml
+git commit -m "Update docker-compose.yml to remove deprecated version attribute"
+
+git add .github/workflows/docker.yml
+git commit -m "Add GitHub Actions Docker build and push workflow"
+
+git add README.md
+git commit -m "Update README with comprehensive documentation"
+
+# 4. Push branch
+git push origin feature-export
+
+# 5. Pull and resolve conflicts
+git pull origin main
+
+# 6. Resolve conflicts and commit
+git add README.md
+git commit -m "Merge remote README and resolve conflicts with comprehensive documentation"
+
+# 7. Push to remote
+git push origin main
+
+# 8. View commit history
+git log --oneline -10
+git log --oneline --all --graph
+
+# 9. Create feature-export for second PR
+git checkout -b feature-export
+
+# 10. Add export functionality
+git add student.py
+git commit -m "Add JSON export support with format parameter"
+
+git add test_student.py
+git commit -m "Add comprehensive tests for JSON and CSV export functionality"
+
+# 11. Test locally
+docker compose build --no-cache
+docker compose up
+
+# 12. Push feature branch
+git push origin feature-export
+
+# 13. Push final documentation
+git add create_report.py
+git add REPORT_SUMMARY.md
+git commit -m "Add comprehensive Word report and report generation script"
+git push origin main
+
+git add FINAL_REPORT_SUMMARY.md
+git commit -m "Add final comprehensive report summary with all deliverables"
+git push origin main
+
+git add PROJECT_COMPLETION_CHECKLIST.md
+git commit -m "Add project completion checklist and verification guide"
+git push origin main
+
+
+## ============================================================================
+## SECTION 22: GIT BEST PRACTICES USED IN THIS PROJECT
+## ============================================================================
+
+# 1. Descriptive Commit Messages
+✓ Used clear, specific commit messages
+✓ Explained what changed and why
+✓ Used imperative mood (Add, Update, Optimize, etc.)
+
+# 2. Frequent Commits
+✓ Committed logical units of work
+✓ Easy to review and revert if needed
+
+# 3. Feature Branch Workflow
+✓ Created feature-export branch for new features
+✓ Kept main branch stable
+✓ Merged via Pull Requests
+
+# 4. Conflict Resolution
+✓ Handled merge conflicts properly
+✓ Tested after resolving conflicts
+✓ Verified all tests pass
+
+# 5. Clean History
+✓ Descriptive commit messages
+✓ Logical commit structure
+✓ Readable git log
+
+# 6. CI/CD Integration
+✓ GitHub Actions validates every push
+✓ Tests run automatically
+✓ Docker image builds and pushes on merge
+
+# 7. Documentation
+✓ Clear README with setup instructions
+✓ Documented all Git commands
+✓ Provided workflow examples
+
+
+## ============================================================================
+## SECTION 23: QUICK COMMAND REFERENCE BY TASK
+## ============================================================================
+
+### Task: Make Changes and Commit
+git add <file>
+git commit -m "Descriptive message"
+
+### Task: Push to Remote
+git push origin <branch-name>
+
+### Task: Create New Branch
+git checkout -b feature-name
+
+### Task: Switch Branches
+git checkout main
+
+### Task: Pull Latest Changes
+git pull origin main
+
+### Task: View Commit History
+git log --oneline
+
+### Task: Revert Changes
+git reset --hard HEAD~1
+
+### Task: Merge Branches
+git merge feature-export
+
+### Task: Resolve Conflicts
+git status                          # See conflicted files
+# Edit files to resolve
+git add <file>                     # Stage resolved files
+git commit -m "Resolve conflicts"
+
+### Task: View Differences
+git diff
+
+### Task: Stash Changes
+git stash
+git stash pop
+
+### Task: Delete Branch
+git branch -d feature-export
+
+
+## ============================================================================
+## SECTION 24: TROUBLESHOOTING COMMANDS
+## ============================================================================
+
+# Undo last commit but keep changes
+git reset --soft HEAD~1
+
+# Undo last commit and discard changes
+git reset --hard HEAD~1
+
+# Find deleted commit
+git reflog
+
+# Recover deleted file
+git checkout HEAD~1 -- filename
+
+# Force push (use with caution)
+git push origin main --force
+
+# Clean up untracked files
+git clean -fd
+
+# Fix accidentally committed to wrong branch
+git cherry-pick cf6f91d
+git push origin main
+
+# Completely reset to remote
+git fetch origin
+git reset --hard origin/main
+
+# View what will be committed
+git diff --cached
+
+# Unstage file
+git reset HEAD filename
+
+# See who changed what
+git blame filename
+
+
+## ============================================================================
+## PROJECT COMPLETION
+## ============================================================================
+
+# Final push of all changes
+git add PROJECT_COMPLETION_CHECKLIST.md
+git commit -m "Complete all Git commands reference documentation"
+git push origin main
+
+# Verify all is pushed
+git log --oneline -5
+
+# Verify branch status
+git branch -a
+
+# Verify remote status
+git remote -v
+
+
+## ============================================================================
+## END OF GIT COMMANDS REFERENCE
+## Total Commands Documented: 150+
+## Project: Student Management System
+## Date: July 18, 2026
+## Status: Complete
+## ============================================================================
