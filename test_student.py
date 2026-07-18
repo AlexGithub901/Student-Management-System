@@ -1,5 +1,6 @@
 import pytest
-from student import add_student, remove_student, search_student, update_student, students, export_students
+import json
+from student import add_student, remove_student, search_student, update_student, students, export_students, export_students_csv, export_students_json
 
 @pytest.fixture(autouse=True)
 def reset_students():
@@ -57,8 +58,32 @@ def test_update_student_multiple_fields():
     assert students['101']['name'] == 'Alice Updated'
     assert students['101']['grade'] == 'A+'
 
-def test_export_students():
+def test_export_students_csv():
     result = export_students()
     assert "ID,Name,Grade" in result
     assert "101,Alice,A" in result
     assert "102,Bob,B" in result
+
+def test_export_students_csv_format():
+    result = export_students(format='csv')
+    assert "ID,Name,Grade" in result
+    assert "101,Alice,A" in result
+    assert "102,Bob,B" in result
+
+def test_export_students_json():
+    result = export_students(format='json')
+    data = json.loads(result)
+    assert '101' in data
+    assert data['101']['name'] == 'Alice'
+    assert data['101']['grade'] == 'A'
+    assert data['102']['name'] == 'Bob'
+    assert data['102']['grade'] == 'B'
+
+def test_export_students_csv_helper():
+    result = export_students_csv()
+    assert "ID,Name,Grade" in result
+
+def test_export_students_json_helper():
+    result = export_students_json()
+    data = json.loads(result)
+    assert '101' in data
