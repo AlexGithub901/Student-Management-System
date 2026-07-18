@@ -1,3 +1,5 @@
+import json
+
 students = {}
 
 def add_student(student_id, name, grade):
@@ -29,8 +31,17 @@ def update_student(student_id, name=None, grade=None):
         students[student_id]['grade'] = grade
     return True
 
-def export_students():
+def export_students(format='csv'):
+    if format == 'json':
+        return json.dumps(students, indent=2)
+    
     lines = ["ID,Name,Grade"]
     for sid, info in students.items():
         lines.append(f"{sid},{info['name']},{info['grade']}")
     return "\n".join(lines)
+
+def export_students_csv():
+    return export_students(format='csv')
+
+def export_students_json():
+    return export_students(format='json')
